@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>东莞鸿福夜市噪音污染综合调查报告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #FFFFFF;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        .highlight-gradient-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.05));
+        }
+        .highlight-gradient-green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0), rgba(16, 185, 129, 0.05));
+        }
+        .highlight-gradient-amber {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0), rgba(245, 158, 11, 0.05));
+        }
+        .highlight-gradient-red {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0), rgba(239, 68, 68, 0.05));
+        }
+        .highlight-gradient-purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0), rgba(139, 92, 246, 0.05));
+        }
+        .highlight-gradient-teal {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0), rgba(20, 184, 166, 0.05));
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .noise-bar {
+            height: 12px;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #34D399 0%, #FBBF24 50%, #EF4444 100%);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+        <!-- 报告标题 -->
+        <div class="card md:col-span-4 p-8 mb-6">
+            <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+            <div class="relative">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">东莞鸿福夜市噪音污染综合调查报告</h1>
+                <p class="text-lg text-gray-500">2025年7月18日 - 2026年2月7日</p>
+            </div>
+        </div>
+
+        <!-- 主要数据概览 -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 mb-6">
+            <div class="card md:col-span-1 p-6 flex flex-col justify-center items-center text-center">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative">
+                    <i class="fa-solid fa-volume-high text-4xl text-red-500 mb-3"></i>
+                    <p class="text-5xl font-bold text-red-500">85-100</p>
+                    <p class="text-gray-600 mt-1">分贝噪音强度</p>
+                    <p class="text-sm text-gray-500 mt-2">远超夜间50分贝标准</p>
+                </div>
+            </div>
+            <div class="card md:col-span-1 p-6 flex flex-col justify-center items-center text-center">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-amber"></div>
+                <div class="relative">
+                    <i class="fa-solid fa-clock text-4xl text-amber-500 mb-3"></i>
+                    <p class="text-5xl font-bold text-amber-500">7-12</p>
+                    <p class="text-gray-600 mt-1">小时噪音持续</p>
+                    <p class="text-sm text-gray-500 mt-2">工作日19:00-24:00</p>
+                </div>
+            </div>
+            <div class="card md:col-span-1 p-6 flex flex-col justify-center items-center text-center">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <i class="fa-solid fa-users text-4xl text-green-500 mb-3"></i>
+                    <p class="text-5xl font-bold text-green-500">3-4万</p>
+                    <p class="text-gray-600 mt-1">受影响居民</p>
+                    <p class="text-sm text-gray-500 mt-2">约10,000户家庭</p>
+                </div>
+            </div>
+            <div class="card md:col-span-1 p-6 flex flex-col justify-center items-center text-center">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <i class="fa-solid fa-map-location-dot text-4xl text-purple-500 mb-3"></i>
+                    <p class="text-5xl font-bold text-purple-500">500m</p>
+                    <p class="text-gray-600 mt-1">影响范围半径</p>
+                    <p class="text-sm text-gray-500 mt-2">以夜市为中心</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目概况 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
+            <div class="card md:col-span-2 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-store text-blue-500 mr-3"></i>
+                        项目概况与研究背景
+                    </h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-700 mb-2">鸿福夜市基本情况</h3>
+                            <p class="text-gray-600">星光InBox鸿福夜市位于东莞市东城街道火炼树社区银树路中段，2025年7月18日正式开市，占地约3000平方米，规划设置60个摊位。夜市定位为集餐饮、娱乐、购物于一体的综合性夜市。</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-700 mb-2">研究范围与目标</h3>
+                            <p class="text-gray-600">研究范围为夜市周边500米范围内的居民区，时间范围从2025年7月18日至2026年2月7日，重点分析2025年12月至2026年1月的投诉高峰期。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card md:col-span-1 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-map-marker-alt text-green-500 mr-2"></i>
+                        地理位置
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-building text-gray-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium text-gray-700">台商大厦</p>
+                                <p class="text-sm text-gray-500">紧邻夜市</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-subway text-gray-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium text-gray-700">市民中心站(C6/C7出口)</p>
+                                <p class="text-sm text-gray-500">仅几百米距离</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-road text-gray-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium text-gray-700">银树路中段</p>
+                                <p class="text-sm text-gray-500">夜市所在道路</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 投诉情况与噪音源分析 -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 mb-6">
+            <div class="card md:col-span-2 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-amber"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-bullhorn text-amber-500 mr-3"></i>
+                        投诉总体情况
+                    </h2>
+                    <div class="mb-4">
+                        <p class="text-gray-600 mb-3">鸿福夜市自开业以来噪音投诉呈爆发式增长态势。根据阳光问政平台和12345政府服务热线的公开数据：</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600 pl-2">
+                            <li>2025年12月23-24日：集中爆发4起投诉</li>
+                            <li>2026年1月7日：1起详细投诉，描述长期噪音扰民</li>
+                            <li>2026年1月13日：1起后续投诉，反映问题未解决</li>
+                        </ul>
+                    </div>
+                    <div class="h-64">
+                        <canvas id="complaintChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card md:col-span-2 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-wave-square text-red-500 mr-3"></i>
+                        噪音源类型分析
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                            <h3 class="font-bold text-red-800 mb-2">露天KTV及演艺活动 <span class="text-sm font-normal text-red-600">(最主要噪音源)</span></h3>
+                            <p class="text-red-700 text-sm">每晚19:00开始，持续至24:00，节假日延长至次日凌晨2:00，配备高功率音响设备</p>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+                            <h3 class="font-bold text-orange-800 mb-2">商家促销活动</h3>
+                            <p class="text-orange-700 text-sm">使用高音喇叭进行促销宣传，流动摊贩使用便携式音响循环播放叫卖录音</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                            <h3 class="font-bold text-yellow-800 mb-2">人群喧哗噪音</h3>
+                            <p class="text-yellow-700 text-sm">食客划拳行令、扔酒瓶、嬉戏吵闹声，持续至凌晨3-4点</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-gray-500">
+                            <h3 class="font-bold text-gray-800 mb-2">经营活动噪音</h3>
+                            <p class="text-gray-700 text-sm">烤炉鼓风机、炒锅声、桌椅挪动、餐具碰撞声</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 噪音强度测量与影响范围 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
+            <div class="card md:col-span-1 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-teal"></div>
+                <div class="relative">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-gauge-high text-teal-500 mr-2"></i>
+                        噪音强度评估
+                    </h2>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">安静室内</span>
+                                <span class="text-sm text-gray-500">30-40dB</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-green-500 h-2.5 rounded-full" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">正常交谈</span>
+                                <span class="text-sm text-gray-500">50dB</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-green-500 h-2.5 rounded-full" style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">夜间标准限值</span>
+                                <span class="text-sm text-gray-500">50dB</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-amber-500 h-2.5 rounded-full" style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">夜市噪音</span>
+                                <span class="text-sm text-gray-500">85-100dB</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-red-500 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-red-50 rounded-lg">
+                            <p class="text-sm text-red-700 font-medium">结论：夜市噪音远超居民区夜间标准限值，属于严重噪音污染</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card md:col-span-2 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-building-user text-purple-500 mr-2"></i>
+                        受影响居民区分布
+                    </h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">居民区名称</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">户数</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">距离</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">受影响程度</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">新世纪豪园</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2,398户</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">300米</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">严重</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">嘉宏摩玛</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">约1,000户</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">紧邻夜市</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">极严重</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">万科城市广场</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">约800户</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">约200米</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">严重</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">景湖春天</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2,758户</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">约400米</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">严重</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">旗峰润府</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">658户</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">约350米</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">严重</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 影响评估 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
+            <div class="card md:col-span-1 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-heart-pulse text-red-500 mr-2"></i>
+                        健康影响
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-moon text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium text-gray-700">睡眠质量下降</p>
+                                <p class="text-sm text-gray-500">深夜噪音持续至凌晨3-4点，老人、儿童等敏感人群受影响尤为严重</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-brain text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium text-gray-700">心理压力增大</p>
+                                <p class="text-sm text-gray-500">居民反映"人都快吵出病来了"，导致烦躁、焦虑等情绪问题</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-home text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium text-gray-700">生活质量下降</p>
+                                <p class="text-sm text-gray-500">无法开窗通风，无法正常进行家庭活动，邻里关系产生矛盾</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card md:col-span-2 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-amber"></div>
+                <div class="relative">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-book-open text-amber-500 mr-2"></i>
+                        学习与工作影响
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-amber-50 p-4 rounded-lg">
+                            <h3 class="font-bold text-amber-800 mb-2 flex items-center">
+                                <i class="fa-solid fa-child text-amber-600 mr-2"></i>
+                                学生学习受干扰
+                            </h3>
+                            <ul class="list-disc list-inside space-y-1 text-amber-700 text-sm">
+                                <li>无法集中精力完成作业</li>
+                                <li>学习效率大幅下降</li>
+                                <li>影响第二天的学习状态</li>
+                                <li>临近考试期间影响更为严重</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-bold text-blue-800 mb-2 flex items-center">
+                                <i class="fa-solid fa-laptop-house text-blue-600 mr-2"></i>
+                                居家办公效率低下
+                            </h3>
+                            <ul class="list-disc list-inside space-y-1 text-blue-700 text-sm">
+                                <li>频繁被噪音打断思路</li>
+                                <li>视频会议受到干扰</li>
+                                <li>工作进度严重受影响</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg md:col-span-2">
+                            <h3 class="font-bold text-purple-800 mb-2 flex items-center">
+                                <i class="fa-solid fa-comments text-purple-600 mr-2"></i>
+                                居民投诉案例
+                            </h3>
+                            <blockquote class="border-l-4 border-purple-400 pl-4 italic text-purple-700 text-sm">
+                                "每天晚上孩子写作业都要带着耳塞，在家里讲话都要靠吼不然互相都听不清，噪音已经到了如此夸张的地步。最恶劣的是，法律明文规定十点后不允许再有任何噪音活动，可是他们每天晚上一直唱到十二点多。"
+                                <footer class="text-right text-xs mt-2">— 新世纪豪园业主</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 治理措施与建议 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+            <div class="card md:col-span-1 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-wrench text-green-500 mr-2"></i>
+                        现有治理措施评估
+                    </h2>
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2">已实施的措施</h3>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600 text-sm pl-2">
+                            <li>约谈夜市负责人</li>
+                            <li>责令停止播放音乐并整改</li>
+                            <li>要求现场配置分贝测试仪</li>
+                            <li>警务区人员不定时进行监督巡查</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-700 mb-2">治理效果评估</h3>
+                        <p class="text-gray-600 text-sm">从居民反馈看，现有措施效果有限。居民反映"社区仅模板化回复，未整改到位"，"周边居民多次拨打110也无改善"，噪音问题持续存在，未得到根本解决。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card md:col-span-1 p-6">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-lightbulb text-blue-500 mr-2"></i>
+                        针对性治理建议
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <h3 class="font-bold text-blue-800 mb-1 text-sm">技术手段治理</h3>
+                            <p class="text-blue-700 text-xs">安装噪音自动监测设备，设置隔音屏障，推广使用定向音响技术</p>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded-lg">
+                            <h3 class="font-bold text-green-800 mb-1 text-sm">管理措施优化</h3>
+                            <p class="text-green-700 text-xs">严格限定营业时间，工作日不超过22:00，周末不超过23:00</p>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-lg">
+                            <h3 class="font-bold text-red-800 mb-1 text-sm">法律手段强化</h3>
+                            <p class="text-red-700 text-xs">依据新《治安管理处罚法》严格执法，加大处罚力度</p>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded-lg">
+                            <h3 class="font-bold text-purple-800 mb-1 text-sm">协调机制完善</h3>
+                            <p class="text-purple-700 text-xs">建立多部门联合执法机制，设立专门的投诉处理热线</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结论与展望 -->
+        <div class="card md:col-span-4 p-6">
+            <div class="absolute top-0 left-0 w-full h-full highlight-gradient-teal"></div>
+            <div class="relative">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                    <i class="fa-solid fa-flag-checkered text-teal-500 mr-3"></i>
+                    结论与展望
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3">主要发现</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-teal-500 mt-1 mr-2"></i>
+                                <span>噪音污染严重超标，达到85-100分贝，远超夜间50分贝标准限值</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-teal-500 mt-1 mr-2"></i>
+                                <span>噪音源类型多样，露天KTV及演艺活动是最主要噪音源</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-teal-500 mt-1 mr-2"></i>
+                                <span>影响范围广、人数多，涉及周边8个大型居民区，约3-4万人</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-teal-500 mt-1 mr-2"></i>
+                                <span>居民反应强烈，多次投诉但问题未得到根本解决</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-teal-500 mt-1 mr-2"></i>
+                                <span>现有治理措施效果有限，缺乏长效机制</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3">对各方的建议</h3>
+                        <div class="space-y-3">
+                            <div class="bg-blue-50 p-3 rounded-lg">
+                                <h4 class="font-bold text-blue-800 mb-1 text-sm">对政府部门</h4>
+                                <p class="text-blue-700 text-xs">严格执法，加大处罚力度，增加噪音监测设备投入，建立多部门联合执法机制</p>
+                            </div>
+                            <div class="bg-green-50 p-3 rounded-lg">
+                                <h4 class="font-bold text-green-800 mb-1 text-sm">对夜市经营方</h4>
+                                <p class="text-green-700 text-xs">主动承担社会责任，合理控制经营时间和噪音强度，采用隔音降噪技术</p>
+                            </div>
+                            <div class="bg-amber-50 p-3 rounded-lg">
+                                <h4 class="font-bold text-amber-800 mb-1 text-sm">对居民</h4>
+                                <p class="text-amber-700 text-xs">依法维权，积极参与社区治理，加强自我保护，采取必要的隔音措施</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-lg">
+                                <h4 class="font-bold text-purple-800 mb-1 text-sm">对社会</h4>
+                                <p class="text-purple-700 text-xs">加强舆论监督，发挥社会组织桥梁作用，提供技术支持，提高环保意识</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 投诉数量图表
+        const complaintCtx = document.getElementById('complaintChart').getContext('2d');
+        const complaintChart = new Chart(complaintCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2025年12月23日', '2025年12月24日', '2026年1月7日', '2026年1月13日'],
+                datasets: [{
+                    label: '投诉数量',
+                    data: [3, 1, 1, 1],
+                    backgroundColor: [
+                        'rgba(239, 68, 68, 0.7)',
+                        'rgba(239, 68, 68, 0.7)',
+                        'rgba(239, 68, 68, 0.7)',
+                        'rgba(239, 68, 68, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(239, 68, 68, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '鸿福夜市噪音投诉时间分布',
+                        font: {
+                            size: 14
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
